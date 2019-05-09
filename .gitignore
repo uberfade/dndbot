@@ -1,6 +1,6 @@
-
-*.json
-*.log
 *.db
+*.log
+*.json
+*.pyc
 keys.py
 praw.ini

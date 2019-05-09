@@ -23,7 +23,6 @@ class RedditBot:
         self.reddit = praw.Reddit('bot1', user_agent='dice roll bot by /u/uberfade')
 
     def _roll_dice(self, re_dice):
-        print ('the regex dice rolls', re_dice)
         r = rolls.Rolls()
         reply = replies.RedditReply()
         rolled = r.dice(re_dice)
@@ -31,7 +30,6 @@ class RedditBot:
         return reply.dice(rolled)
 
     def _roll_hps(self, re_hps):
-        print ('the regex hps rolls', re_hps)
         r = rolls.Rolls()
         reply = replies.RedditReply()
         rolled = r.hp(re_hps)
@@ -39,7 +37,6 @@ class RedditBot:
         return reply.dice(rolled)
 
     def _roll_treasure(self, re_treasure):
-        print ('the regex treasure rolls', re_treasure)
         r = rolls.Rolls()
         reply = replies.RedditReply()
         rolled = r.treasure(re_treasure)
@@ -57,14 +54,14 @@ class RedditBot:
         r = rolls.Rolls()
         reply = replies.RedditReply()
         rolled = r.stats(re_stats)
-        logger.info('Rolled stats')
+        logger.info('rolled stats')
         return reply.stats(rolled)
 
     def _inventory(self, player):
         i = invetory.Inv()
         reply = replies.RedditReply()
         get_inv = i.get_inv(player)
-        logger.info('Retrieved inventory for {}'.format(player))
+        logger.info('retrieved inventory for {}'.format(player))
         return reply.inv(get_inv)
 
 

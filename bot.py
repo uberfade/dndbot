@@ -66,7 +66,7 @@ class RedditBot:
 
 
     def search_comments(self):
-        conn = sqlite3.connect('comment.db')
+        conn = sqlite3.connect('dicebot.db')
         c = conn.cursor()
         try:
             c.execute('CREATE TABLE comments (id text primary key)')

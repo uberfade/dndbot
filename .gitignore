@@ -1,0 +1,6 @@
+
+*.json
+*.log
+*.db
+keys.py
+praw.ini

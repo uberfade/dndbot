@@ -58,7 +58,7 @@ class RedditBot:
         return reply.stats(rolled)
 
     def _inventory(self, player):
-        i = invetory.Inv()
+        i = inventory.Inv()
         reply = replies.RedditReply()
         get_inv = i.get_inv(player)
         logger.info('retrieved inventory for {}'.format(player))

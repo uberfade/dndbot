@@ -20,6 +20,7 @@ class Inv:
         for num, entry in enumerate(row):
             if entry == '':
                 return num+1
+        return len(row)+1
 
     def sub_inv(self, person, items):
         gs = gspread.authorize(self.credentials)

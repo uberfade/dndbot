@@ -29,25 +29,36 @@ class Inv:
         all_items = items.split(', ')
         wb = gs.open_by_key(key).sheet1
 
-
+        reply = ''
         for item in all_items:
             if item[0] != '$':
+                try:
+                    first = wb.find(item)
+                    row = int(first.row)
+                    col = int(first.col)
+                    for n in range(1, 4):
+                        wb.update_cell(row, n, '')
+                except gspread.exceptions.CellNotFound:
+                    if reply:
+                        reply += '  \nItem: {} not found'.format(item)
+                    else:
+                        reply += '! Error !  \nItem: {} not found'.format(item)
 
-                first = wb.find(item)
-                row = int(first.row)
-                col = int(first.col)
-                
-                for n in range(1, 4):
-                    wb.update_cell(row, n, '')
             else:
-
                 item = item[1:]
-                first = wb.find(item)
-                row = int(first.row)
-                col = int(first.col)
+                try:
+                    first = wb.find(item)
+                    row = int(first.row)
+                    col = int(first.col)
+                    wb.update_cell(row, col, '')
+                    wb.update_cell(row, col+1, '')
+                except gspread.exceptions.CellNotFound:
+                    if reply:
+                        reply += '  \nItem: {} not found'.format(item)
+                    else:
+                        reply += '! Error !  \nItem: {} not found'.format(item)
 
-                wb.update_cell(row, col, '')
-                wb.update_cell(row, col+1, '')
+        return reply
 
 
     def add_inv(self, person, item, weight, value):

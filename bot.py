@@ -10,7 +10,7 @@ import rolls
 import sqlite3
 import treasure
 
-logger = logging.getLogger('bot_logger')
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 fmt = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s","%Y-%m-%d %H:%M:%S")
 fh = logging.FileHandler('redditbot.log')
@@ -151,8 +151,16 @@ class RedditBot:
                 if re_sub and author == 'uberfade':
                     i = inventory.Inv()
                     for inv in re_sub:
-                        i.sub_inv(inv[0], inv[1])
-                    logger.info('removed from inventory')
+                        reply = i.sub_inv(inv[0], inv[1])
+                    if reply:
+                        if all_replies:
+                            all_replies += '  \n  \n{}'.format(reply)
+                        else:
+                            all_replies = reply
+                    if reply:
+                        logger.info('failed to remove item')
+                    else:
+                        logger.info('removed from inventory')
                     adjust_inv = True
 
                 if re_coins and author == 'uberfade':

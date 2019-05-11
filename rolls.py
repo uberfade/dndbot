@@ -1,4 +1,5 @@
 import random
+import replies
 import treasure
 
 class Rolls:
@@ -82,45 +83,31 @@ class Rolls:
 
     def items(self, items):
         all_items = []
+        t = treasure.Treasure()
         for item in items:
-            t = treasure.Treasure()
-            if not item[2]:
-                if item[0] == 'armor':
-                    all_items += (t.get_armor(item[1]))
-                elif item[0] == 'weapon':
-                    all_items += (t.get_weapon(item[1]))
-                elif item[0] == 'potion':
-                    all_items += (t.get_potion(item[1]))
-                elif item[0] == 'ring':
-                    all_items += (t.get_ring(item[1]))
-                elif item[0] == 'rod':
-                    all_items += (t.get_rod(item[1]))
-                elif item[0] == 'scroll':
-                    all_items += (t.get_scroll(item[1]))
-                elif item[0] == 'staff':
-                    all_items += (t.get_staff(item[1]))
-                elif item[0] == 'wand':
-                    all_items += (t.get_wand(item[1]))
-                else:
-                    all_items += (t.get_wondrous(item[1]))
+            if item[0] == 'armor':
+                all_items += (t.get_armor(item[1], int(item[2])))
+            elif item[0] == 'weapon':
+                all_items += (t.get_weapon(item[1], int(item[2])))
+            elif item[0] == 'potion':
+                all_items += (t.get_potion(item[1], int(item[2])))
+            elif item[0] == 'ring':
+                all_items += (t.get_ring(item[1], int(item[2])))
+            elif item[0] == 'rod':
+                all_items += (t.get_rod(item[1], int(item[2])))
+            elif item[0] == 'scroll':
+                all_items += (t.get_scroll(item[1], int(item[2])))
+            elif item[0] == 'staff':
+                all_items += (t.get_staff(item[1], int(item[2])))
+            elif item[0] == 'wand':
+                all_items += (t.get_wand(item[1], int(item[2])))
             else:
-                if item[0] == 'armor':
-                    all_items += (t.get_armor(item[1], int(item[2])))
-                elif item[0] == 'weapon':
-                    all_items += (t.get_weapon(item[1], int(item[2])))
-                elif item[0] == 'potion':
-                    all_items += (t.get_potion(item[1], int(item[2])))
-                elif item[0] == 'ring':
-                    all_items += (t.get_ring(item[1], int(item[2])))
-                elif item[0] == 'rod':
-                    all_items += (t.get_rod(item[1], int(item[2])))
-                elif item[0] == 'scroll':
-                    all_items += (t.get_scroll(item[1], int(item[2])))
-                elif item[0] == 'staff':
-                    all_items += (t.get_staff(item[1], int(item[2])))
-                elif item[0] == 'wand':
-                    all_items += (t.get_wand(item[1], int(item[2])))
-                else:
-                    all_items += (t.get_wondrous(item[1], int(item[2])))
-        return all_items
+                all_items += (t.get_wondrous(item[1], int(item[2])))
+        return (all_items, t.total, t.sell)
 
+r = Rolls()
+it = r.items([['wondrous', 'major', '3'], ['armor', 'major', '1']])
+
+rep = replies.RedditReply()
+res = rep.items(it)
+print (res)

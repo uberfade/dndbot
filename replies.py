@@ -9,8 +9,6 @@ class RedditReply:
     def treasure(self, treasure):
         reply = '#Treasure  \n  \n'
         for hoard in treasure:
-            reply += '**Total**: {}  \n'.format(hoard[0])
-            reply += '**Sell**: {}  \n  \n'.format(hoard[1])
             reply += '**Coins**: {}  \n  \n'.format(hoard[2])
             if hoard[3]:
                 if len(hoard[3]) == 1:
@@ -34,7 +32,8 @@ class RedditReply:
             else:
                 reply += '**Items**: None  \n'
 
-            reply += '  \n'
+            reply += '  \n**Total**: {}  \n'.format(hoard[0])
+            reply += '**Sell**: {}  \n  \n'.format(hoard[1])
 
         reply += '^^1. ^^The ^^number ^^enclosed ^^in ^^parenthesis ^^next ^^to ^^an ^^item ^^is ^^its ^^full ^^value.  \n'
         reply += '^^2. ^^All ^^items ^^and ^^goods ^^valued ^^are ^^in ^^gold.  \n'
@@ -49,12 +48,15 @@ class RedditReply:
         return reply
 
     def items(self, items):
-        if len(items) < 2:
-            reply = 'Item: {}'.format(items[0])
+        if len(items[0]) < 2:
+            reply = 'Item: {}'.format(items[0][0])
         else:
             reply = 'Items:  \n  \n'
-            for item in items:
+            for item in items[0]:
                 reply += '* {}\n'.format(item)
+
+        reply += '  \n  \nTotal: {}  \n'.format(items[-2])
+        reply += 'Sell: {}'.format(items[-1])
         return reply
 
     def coins(self, coins):

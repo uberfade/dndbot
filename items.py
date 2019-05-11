@@ -711,7 +711,7 @@ ART = [[
         'star opal pendant',
         'gold lined frame',
         'gold-trimmed plate',
-        "first edition of 'Zhon Dragonslayer: Volume Twenty-six'",
+        "first edition of 'Volume Twenty-six of Zhon Dragonslayer'",
         'golden comb',
         'silver and gold talisman',
         'crown of royalty',

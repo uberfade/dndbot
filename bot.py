@@ -85,7 +85,7 @@ class RedditBot:
             re_hps = re.findall(r'!hp\s(\d+)d(\d+)', text)
             re_treasure = re.findall(r'!treasure\((\d{1,2})\)', text)
             re_mod_treasure = re.findall(r'!treasure\((\d{1,2})\s([\scgi\+\-]{2,9})\)', text)
-            re_items = re.findall(r'!items\(([a-z]{3,8})\s(minor|medium|major)(\s\d{1,3})?\)', text)
+            re_items = re.findall(r'!items\s([a-z]{3,8})\s(minor|medium|major)\s(\d{1,3})', text)
             re_stats = re.findall(r'!stats', text)
             re_add = re.findall(r'\+inv\s(art|kannab|zlatan|uberfade)\s(.*),\s(-?\d{1,4})\s(\d{1,9})\s\+inv', text)
             re_sub = re.findall(r'\-inv\s(art|kannab|zlatan|uberfade)\s(.+)\s\-inv', text)
@@ -132,7 +132,6 @@ class RedditBot:
                         all_replies += '  \n  \n{}'.format(reply)
                     else:
                         all_replies = reply
-
 
                 if re_stats:
                     reply = self._roll_stats(re_stats)

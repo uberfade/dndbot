@@ -1,5 +1,4 @@
 import random
-import replies
 import treasure
 
 class Rolls:
@@ -104,10 +103,3 @@ class Rolls:
             else:
                 all_items += (t.get_wondrous(item[1], int(item[2])))
         return (all_items, t.total, t.sell)
-
-r = Rolls()
-it = r.items([['wondrous', 'major', '3'], ['armor', 'major', '1']])
-
-rep = replies.RedditReply()
-res = rep.items(it)
-print (res)
